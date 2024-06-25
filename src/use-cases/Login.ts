@@ -1,34 +1,44 @@
-
-import UserRepo from "src/repo/UserRepo"
-import User from "./User.do"
+import UserRepo from 'src/repo/UserRepo';
+import User from './User.do';
+import Password from './Password.vo';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 
 export default class Login {
-    private repo: UserRepo
+	private repo: UserRepo;
 
-    constructor(repo: UserRepo) {
-        this.repo = repo
-    }
+	constructor(repo: UserRepo) {
+		this.repo = repo;
+	}
 
-    async execute(input: input) {
-        const found = await this.repo.findByEmail(input.email)
-        if (!found) {
-            throw new Error('User not found');
-        }
+	async execute(input: input): Promise<string> {
+		const user = await this.repo.findByEmail(input.email);
+		if (!user) throw new Error('User not found');
+		if (!process.env.SECRET_KEY) throw new Error('Invalid secret key');
 
-        const userObj = {
-            id: found.id.get(), 
-			email: found.email,
-			name: found.name,
-            password: found.password.get(),
-			validity: new Date()
-        }
+		const passwordValid = user.password.validate(
+			input.password,
+			process.env.SECRET_KEY
+		);
+		if (!passwordValid) {
+			throw new Error('Invalid password');
+		}
+		const output = jwt.sign(
+			{
+				id: user.id.get(),
+				email: user.email,
+				name: user.name,
+				validity: user.validity,
+				photo: user.photo,
+			},
+			process.env.SECRET_KEY as string,
+			{ expiresIn: '2days' }
+		);
 
-        const output = User.build(userObj)
-        return output
-    }
+		return output;
+	}
 }
 
 type input = {
-        email: string,
-        password: string,
-}
+	email: string;
+	password: string;
+};
