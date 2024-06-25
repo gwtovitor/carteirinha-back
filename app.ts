@@ -1,14 +1,5 @@
-import express from 'express';
+import App from './app.class';
 
-export default class App {
-	public app: express.Application;
+const appInstance = new App();
 
-	constructor() {
-		this.app = express();
-		this.app.use(express.json());
-		this.app.set('Content-Type', 'application/json');
-        console.log("Teste 🦧🦧🦧🦧")
-	}
-}
-
-const app = new App()
+export default appInstance;
