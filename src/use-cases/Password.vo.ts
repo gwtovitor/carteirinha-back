@@ -1,32 +1,28 @@
 import crypto from 'crypto';
 
 export default class Password {
-    private constructor(private readonly value: string, private readonly salt: string) {}
+    private constructor(private readonly hashedPassword: string) {}
 
-    static create(plainTextPassword: string): Password {
-        // if (!this.isStrongPassword(plainTextPassword)) {
-        //     throw new Error('Password is too weak');
-        // }
-        const salt = crypto.randomBytes(16).toString('hex');
-        const hashedPassword = this.hashPassword(plainTextPassword, salt);
-        return new Password(hashedPassword, salt);
+    static create(plainTextPassword: string, secretKey: string): Password {
+        const hashedPassword = this.hashPassword(plainTextPassword, secretKey);
+        return new Password(hashedPassword);
+    }
+    static build(plainTextPassword: string, secretKey: string): Password {
+        return new Password(plainTextPassword);
     }
 
-    private static isStrongPassword(password: string): boolean {
-        const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-        return strongPasswordRegex.test(password);
+    private static hashPassword(plainTextPassword: string, secretKey: string): string {
+        const hash = crypto.createHmac('sha256', secretKey);
+        hash.update(plainTextPassword);
+        return hash.digest('hex');
     }
 
-    private static hashPassword(password: string, salt: string): string {
-        return crypto.pbkdf2Sync(password, salt, 1000, 64, `sha512`).toString(`hex`);
-    }
-
-    validate(plainTextPassword: string): boolean {
-        const hashedPassword = Password.hashPassword(plainTextPassword, this.salt);
-        return this.value === hashedPassword;
+    validate(plainTextPassword: string, secretKey: string): boolean {
+        const hashedInputPassword = Password.hashPassword(plainTextPassword, secretKey);
+        return this.hashedPassword === hashedInputPassword;
     }
 
     get(): string {
-        return this.value;
+        return this.hashedPassword;
     }
 }
