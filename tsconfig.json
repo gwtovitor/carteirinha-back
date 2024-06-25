@@ -1,25 +1,25 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "esnext",
-    "lib": ["es6", "es5", "es7", "dom"],
-    "allowJs": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "esnext",
+		"lib": ["es6", "es5", "es7", "dom"],
+		"allowJs": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
 
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "strictPropertyInitialization": false,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"strictPropertyInitialization": false,
 
-    //"composite": true,
-    "outDir": "./dist",
-    "baseUrl": ".",
-    "skipLibCheck": true,
-},
-  "exclude": ["node_modules", "dist"]
-  //"include": [ "src/**/*" ], // if you need absolute path or path alias outside src then include the directory accordingly
+		//"composite": true,
+		"outDir": "./dist",
+		"baseUrl": ".",
+		"skipLibCheck": true
+	},
+	"exclude": ["node_modules", "dist"]
+	//"include": [ "src/**/*" ], // if you need absolute path or path alias outside src then include the directory accordingly
 }
