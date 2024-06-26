@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import Database from 'src/db/db';
-import { CustomRequest } from 'src/middleware/auth';
+import { CustomRequest, verifyToken } from 'src/middleware/auth';
 import UserRepo from 'src/repo/UserRepo';
 import UserRepoMongo from 'src/repo/UserRepoMongo';
 import Login from 'src/use-cases/Login';
@@ -52,14 +52,15 @@ export default class UserController {
 			const update = new UpdateUser(this.repo);
 
 			const user = await this.repo.findById(req.token.id);
-			
+
 			if (!user) {
 				throw new Error('User not found');
 			}
 			if (user.email != req.body.email) {
-				throw new Error('You do not have permission to update this user');
+				throw new Error(
+					'You do not have permission to update this user'
+				);
 			}
-
 			await update.execute({
 				id: user.id.get(),
 				email: input.email,
@@ -72,6 +73,33 @@ export default class UserController {
 		} catch (error: any) {
 			return res.status(400).json({ message: error.message });
 		}
-	}; 
-}
+	};
 
+	public getUser = async (req: CustomRequest, res: Response) => {
+		try {
+			const user = await this.repo.findById(req.token.id);
+
+			if (!user) {
+				throw new Error('User not found');
+			}
+
+			return res.status(200).json({
+				id: user.getId().get(),
+				name: user.name,
+				email: user.email,
+				validity: user.validity,
+				photo: user.photo,
+			});
+		} catch (error: any) {
+			return res.status(400).json({ message: error.message });
+		}
+	};
+
+	public decodeToken = async (req: CustomRequest, res: Response) => {
+		try {
+			return res.status(200).json({ user: req.token });
+		} catch (error: any) {
+			return res.status(400).json({ message: error.message });
+		}
+	};
+}

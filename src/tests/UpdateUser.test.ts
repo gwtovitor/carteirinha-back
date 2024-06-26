@@ -1,9 +1,8 @@
 import UserRepoMemory from '../repo/UserMemory.repo';
-import Signup from './Signup';
+import Signup from '../use-cases/Signup';
 import UserRepo from '../repo/UserMemory.repo';
-import Login from './Login';
-import User from './User.do';
-import UpdateUser from './UpdateUser';
+import Login from '../use-cases/Login';
+import UpdateUser from '../use-cases/UpdateUser';
 import * as dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 

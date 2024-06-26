@@ -9,7 +9,7 @@ export class routes {
         console.log('🛣️  Routes')
 
         this.router.use(UserRoutes())
-
+        
         return this.router
     }
 }

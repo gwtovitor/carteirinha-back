@@ -1,5 +1,5 @@
 import UserRepo from 'src/repo/UserRepo';
-import User from './User.do';
+import User from '../domain/User.do';
 
 export default class UpdateUser {
 	private repo: UserRepo;

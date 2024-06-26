@@ -13,6 +13,10 @@ function routes() {
 
 	router.put(`/user/update/:id`, auth, controller.update);
 
+	router.get(`/user/:id`, auth, controller.getUser);
+
+	router.get(`/decode-token`, auth, controller.decodeToken);
+
 	return router;
 }
 

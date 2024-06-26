@@ -1,5 +1,5 @@
-import UUID from "./UUID.vo";
-import Password from "./Password.vo";
+import UUID from "../Value-objects/UUID.vo";
+import Password from "../Value-objects/Password.vo";
 
 export default class User {
     private constructor(

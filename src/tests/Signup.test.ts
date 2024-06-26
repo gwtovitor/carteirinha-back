@@ -1,10 +1,9 @@
 import UserRepoMemory from '../repo/UserMemory.repo';
-import Signup from './Signup';
+import Signup from '../use-cases/Signup';
 import UserRepo from '../repo/UserMemory.repo';
-import Login from './Login';
-import User from './User.do';
+import Login from '../use-cases/Login';
 import * as dotenv from 'dotenv'
-import { jwtOutput } from './UpdateUser.test';
+import { jwtOutput } from '../tests/UpdateUser.test';
 import jwt from 'jsonwebtoken';
 
 describe('Signup', () => {

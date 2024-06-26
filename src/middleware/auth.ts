@@ -23,3 +23,14 @@ export const auth = async (req: Request, res: Response, next: NextFunction) => {
         res.status(401).send(errorMessage);
     }
 };
+
+export const verifyToken = (token: string): any => {
+    const SECRET_KEY: Secret = process.env.SECRET_KEY as string;
+  
+    try {
+      const decoded = jwt.verify(token, SECRET_KEY);
+      return decoded;
+    } catch (err) {
+      throw new Error('Invalid token');
+    }
+  };

@@ -1,7 +1,7 @@
 import { Service } from 'typedi';
 import UserRepo from './UserRepo';
 import Database from 'src/db/db';
-import User from 'src/use-cases/User.do';
+import User from 'src/domain/User.do';
 import mongoose from 'mongoose';
 
 @Service()
@@ -10,17 +10,16 @@ export default class UserRepoMongo implements UserRepo {
 
 	constructor(private database: Database) {
 		const userSchema = new mongoose.Schema({
-            id: { type: String, required: true, unique: true },
-            email: { type: String, required: true, unique: true },
-            name: { type: String, required: true },
-            password: { type: String, required: true },
-            validity: { type: Date, required: true },
-            photo: { type: String }
-        });
+			id: { type: String, required: true, unique: true },
+			email: { type: String, required: true, unique: true },
+			name: { type: String, required: true },
+			password: { type: String, required: true },
+			validity: { type: Date, required: true },
+			photo: { type: String },
+		});
 
-        this.userModel = mongoose.model('users', userSchema, 'carteirinha');
+		this.userModel = mongoose.model('users', userSchema, 'carteirinha');
 	}
-
 
 	async create(user: User): Promise<void> {
 		const userDoc = new this.userModel({
@@ -38,13 +37,15 @@ export default class UserRepoMongo implements UserRepo {
 		const userDoc = await this.userModel
 			.findOne({ id: user.id.get() })
 			.exec();
-		console.log(user.validity)
+		console.log(userDoc.photo);
+		console.log(user.photo);
 		if (userDoc) {
 			userDoc.email = user.email;
 			userDoc.name = user.name;
-			userDoc.password = user.password.get(),
+			userDoc.password = user.password.get();
 			userDoc.photo = user.photo;
-			userDoc.validity= user.validity;
+			userDoc.validity = user.validity;
+
 			await userDoc.save();
 		} else {
 			throw new Error(`User not found`);

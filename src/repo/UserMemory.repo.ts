@@ -1,5 +1,5 @@
 import UserRepo from './UserRepo';
-import User from 'src/use-cases/User.do';
+import User from 'src/domain/User.do';
 
 export default class UserRepoMemory implements UserRepo {
 	private users: User[];

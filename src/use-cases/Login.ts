@@ -1,7 +1,5 @@
 import UserRepo from 'src/repo/UserRepo';
-import User from './User.do';
-import Password from './Password.vo';
-import jwt, { JwtPayload } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 export default class Login {
 	private repo: UserRepo;
