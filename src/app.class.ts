@@ -12,7 +12,7 @@ export default class App {
 
     // Configurar CORS
     const corsOptions: cors.CorsOptions = {
-      origin: 'http://localhost:3000', // Permitir apenas o domínio do frontend
+      origin: 'https://carteirinha-front-rirawl8kz-gwtovitors-projects.vercel.app/', // Permitir apenas o domínio do frontend
       methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
       allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
     };
