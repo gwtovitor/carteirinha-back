@@ -1,12 +1,20 @@
 import * as dotenv from 'dotenv';
+import Database from './db/db';
 dotenv.config();
 import * as http from 'http';
 import appInstance from './app';
+
+
+
 const app = appInstance.app;
 const port = normalizePort(process.env.PORT || '8081');
 app.set('port', port);
 
 const server = http.createServer(app);
+
+
+const db = new Database()
+db.connect()
 
 server.listen(port);
 server.on('error', onError);

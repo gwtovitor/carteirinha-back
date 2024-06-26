@@ -27,6 +27,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv = __importStar(require("dotenv"));
+const db_1 = __importDefault(require("./db/db"));
 dotenv.config();
 const http = __importStar(require("http"));
 const app_1 = __importDefault(require("./app"));
@@ -34,17 +35,11 @@ const app = app_1.default.app;
 const port = normalizePort(process.env.PORT || '8081');
 app.set('port', port);
 const server = http.createServer(app);
+const db = new db_1.default();
+db.connect();
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-
-
-console.log('🔒🔒🔒🔒')
-console.log(process.env.SECRET_KEY)
-console.log(process.env.DB_URL)
-console.log(process.env.PORT)
-
-
 function normalizePort(val) {
     const port = parseInt(val, 10);
     if (isNaN(port)) {
