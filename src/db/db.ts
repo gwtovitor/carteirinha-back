@@ -46,7 +46,7 @@ export default class Database implements IDatabase {
 			await mongoose.connect("mongodb+srv://admin:FbnktXjNDDkJ7jiV@atlasdb.wx0smvj.mongodb.net/?appName=atlasdb");
 		};
 
-		run().catch((error) => console.error(error));
+		run().catch((error) => console.error(error, 'Error na conexção', "mongodb+srv://admin:FbnktXjNDDkJ7jiV@atlasdb.wx0smvj.mongodb.net/?appName=atlasdb"));
 	}
 
 	get() {
