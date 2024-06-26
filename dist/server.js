@@ -37,6 +37,14 @@ const server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+
+console.log('🔒🔒🔒🔒')
+console.log(process.env.SECRET_KEY)
+console.log(process.env.DB_URL)
+console.log(process.env.PORT)
+
+
 function normalizePort(val) {
     const port = parseInt(val, 10);
     if (isNaN(port)) {
