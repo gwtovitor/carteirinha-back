@@ -24,7 +24,7 @@ class User {
         if (!process.env.SECRET_KEY) {
             throw new Error("Undefined secret key");
         }
-        return new User(UUID_vo_1.default.create(), input.email, input.name, Password_vo_1.default.create(input.password, process.env.SECRET_KEY), new Date(), input.photo);
+        return new User(UUID_vo_1.default.create(), input.email, input.name, Password_vo_1.default.create(input.password, process.env.SECRET_KEY), input.validity, input.photo);
     }
     static build(input) {
         if (!process.env.SECRET_KEY) {

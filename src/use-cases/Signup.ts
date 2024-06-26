@@ -15,6 +15,7 @@ export default class Signup {
 		input.validity = validity
 
 		const user = User.create(input);
+	
 		const found = await this.repo.findByEmail(user.getEmail());
 		if (found != undefined) {
 			throw new Error('A user with this email address already exists');

@@ -20,7 +20,7 @@ export default class User {
             input.email,
             input.name,
             Password.create(input.password, process.env.SECRET_KEY),
-            new Date(),
+            input.validity,
             input.photo
         );
     }

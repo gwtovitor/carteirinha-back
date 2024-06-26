@@ -12,11 +12,10 @@ class App {
         this.app = (0, express_1.default)();
         this.app.use(express_1.default.json());
         this.app.set('Content-Type', 'application/json');
-        // Configurar CORS
         const corsOptions = {
-            origin: 'https://carteirinha-front-rirawl8kz-gwtovitors-projects.vercel.app', // Permitir apenas o domínio do frontend
-            methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
-            allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
+            origin: ['https://carteirinha-front-rirawl8kz-gwtovitors-projects.vercel.app', 'http://localhost:3000'],
+            methods: ['GET', 'POST', 'PUT', 'DELETE'],
+            allowedHeaders: ['Content-Type', 'Authorization'],
         };
         this.app.use((0, cors_1.default)(corsOptions));
         const routes = new routes_1.default();

@@ -10,11 +10,16 @@ class Password {
         this.hashedPassword = hashedPassword;
     }
     static create(plainTextPassword, secretKey) {
+        // Validação da senha
+        if (!this.isValidPassword(plainTextPassword)) {
+            console.log(plainTextPassword);
+            throw new Error('A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e pelo menos 5 caracteres.');
+        }
         const hashedPassword = this.hashPassword(plainTextPassword, secretKey);
         return new Password(hashedPassword);
     }
-    static build(plainTextPassword, secretKey) {
-        return new Password(plainTextPassword);
+    static build(hashedPassword, secretKey) {
+        return new Password(hashedPassword);
     }
     static hashPassword(plainTextPassword, secretKey) {
         const hash = crypto_1.default.createHmac('sha256', secretKey);
@@ -27,6 +32,10 @@ class Password {
     }
     get() {
         return this.hashedPassword;
+    }
+    static isValidPassword(password) {
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{5,}$/;
+        return passwordRegex.test(password);
     }
 }
 exports.default = Password;

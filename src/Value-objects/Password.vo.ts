@@ -4,11 +4,18 @@ export default class Password {
     private constructor(private readonly hashedPassword: string) {}
 
     static create(plainTextPassword: string, secretKey: string): Password {
+        // Validação da senha
+        if (!this.isValidPassword(plainTextPassword)) {
+            console.log(plainTextPassword)
+            throw new Error('A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e pelo menos 5 caracteres.');
+        }
+
         const hashedPassword = this.hashPassword(plainTextPassword, secretKey);
         return new Password(hashedPassword);
     }
-    static build(plainTextPassword: string, secretKey: string): Password {
-        return new Password(plainTextPassword);
+
+    static build(hashedPassword: string, secretKey: string): Password {
+        return new Password(hashedPassword);
     }
 
     private static hashPassword(plainTextPassword: string, secretKey: string): string {
@@ -24,5 +31,10 @@ export default class Password {
 
     get(): string {
         return this.hashedPassword;
+    }
+
+    private static isValidPassword(password: string): boolean {
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{5,}$/;
+        return passwordRegex.test(password);
     }
 }

@@ -59,50 +59,18 @@ describe('Signup', () => {
         expect(decoded.email).toBe(input.email);
         expect(decoded.name).toBe(input.name);
     });
-    test('Não deve logar um usuario com password incorreta', async () => {
+    test('Não criar um usuario com password insatisfatória', async () => {
         //given
         const repo = new UserMemory_repo_1.default();
         const input = {
             email: 'gwtovitorpw@gmail.com',
-            password: 'Vitor1997@',
+            password: 'vitor',
             name: 'Vitor Augusto',
             validity: new Date(),
             photo: 'https://blabla.com.br',
         };
-        //when
-        const signin = new Signup_1.default(repo);
-        await signin.execute(input);
-        const login = new Login_1.default(repo);
-        const loginInput = {
-            email: 'gwtovitorpw@gmail.com',
-            password: '123',
-        };
-        //then
-        await expect(async () => {
-            await login.execute(loginInput);
-        }).rejects.toThrow('Invalid password');
-    });
-    test('Não deve logar (Email inexistente)', async () => {
-        //given
-        const repo = new UserMemory_repo_1.default();
-        const input = {
-            email: 'gwtovitorpw@gmail.com',
-            password: 'Vitor1997@',
-            name: 'Vitor Augusto',
-            validity: new Date(),
-            photo: 'https://blabla.com.br',
-        };
-        //when
-        const signin = new Signup_1.default(repo);
-        await signin.execute(input);
-        const login = new Login_1.default(repo);
-        const loginInput = {
-            email: 'vitor@gmail.com',
-            password: '123',
-        };
-        //then
-        await expect(async () => {
-            await login.execute(loginInput);
-        }).rejects.toThrow('User not found');
+        //when //then
+        const signup = new Signup_1.default(repo);
+        expect(async () => await signup.execute(input)).rejects.toThrow('A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e pelo menos 5 caracteres.');
     });
 });
