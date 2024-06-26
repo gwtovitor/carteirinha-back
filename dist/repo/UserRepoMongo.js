@@ -46,8 +46,6 @@ let UserRepoMongo = class UserRepoMongo {
         const userDoc = await this.userModel
             .findOne({ id: user.id.get() })
             .exec();
-        console.log(userDoc.photo);
-        console.log(user.photo);
         if (userDoc) {
             userDoc.email = user.email;
             userDoc.name = user.name;

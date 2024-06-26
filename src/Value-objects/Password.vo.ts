@@ -6,8 +6,7 @@ export default class Password {
     static create(plainTextPassword: string, secretKey: string): Password {
         // Validação da senha
         if (!this.isValidPassword(plainTextPassword)) {
-            console.log(plainTextPassword)
-            throw new Error('A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e pelo menos 5 caracteres.');
+            throw new Error('Invalid password');
         }
 
         const hashedPassword = this.hashPassword(plainTextPassword, secretKey);
