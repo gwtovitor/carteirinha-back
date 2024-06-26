@@ -1,1 +1,1 @@
-# to start: yarn start || yarn dev
+to start: yarn start || yarn dev
