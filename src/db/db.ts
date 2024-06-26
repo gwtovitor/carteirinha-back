@@ -43,7 +43,7 @@ export default class Database implements IDatabase {
 
 	async connect() {
 		const run = async () => {
-			await mongoose.connect(<string>process.env.DB_URL);
+			await mongoose.connect("mongodb+srv://admin:FbnktXjNDDkJ7jiV@atlasdb.wx0smvj.mongodb.net/?appName=atlasdb");
 		};
 
 		run().catch((error) => console.error(error));
