@@ -1,6 +1,6 @@
 import express, { Router } from 'express';
 import Container from 'typedi';
-import { auth } from 'src/middleware/auth';
+import { auth } from '../middleware/auth';
 import UserController from './user.controller';
 
 function routes() {

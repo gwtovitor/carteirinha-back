@@ -1,5 +1,5 @@
 import express from 'express';
-import Routes from 'src/routes';
+import Routes from './routes';
 import cors from 'cors';
 
 export default class App {

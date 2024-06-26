@@ -1,4 +1,4 @@
-import UserRepo from 'src/repo/UserRepo';
+import UserRepo from '../repo/UserRepo';
 import User from '../domain/User.do';
 
 export default class Signup {

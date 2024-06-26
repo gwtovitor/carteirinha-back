@@ -1,7 +1,7 @@
 import { Service } from 'typedi';
 import UserRepo from './UserRepo';
-import Database from 'src/db/db';
-import User from 'src/domain/User.do';
+import Database from '../db/db';
+import User from '../domain/User.do';
 import mongoose from 'mongoose';
 
 @Service()

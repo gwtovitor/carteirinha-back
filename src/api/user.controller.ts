@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import Database from 'src/db/db';
-import { CustomRequest, verifyToken } from 'src/middleware/auth';
-import UserRepo from 'src/repo/UserRepo';
-import UserRepoMongo from 'src/repo/UserRepoMongo';
-import Login from 'src/use-cases/Login';
-import Signup from 'src/use-cases/Signup';
-import UpdateUser from 'src/use-cases/UpdateUser';
+import Database from '../db/db';
+import { CustomRequest, verifyToken } from '../middleware/auth';
+import UserRepo from '../repo/UserRepo';
+import UserRepoMongo from '../repo/UserRepoMongo';
+import Login from '../use-cases/Login';
+import Signup from '../use-cases/Signup';
+import UpdateUser from '../use-cases/UpdateUser';
 import { Service } from 'typedi';
 
 @Service()

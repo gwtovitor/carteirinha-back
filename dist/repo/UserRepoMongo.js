@@ -13,8 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typedi_1 = require("typedi");
-const db_1 = __importDefault(require("src/db/db"));
-const User_do_1 = __importDefault(require("src/domain/User.do"));
+const db_1 = __importDefault(require("../db/db"));
+const User_do_1 = __importDefault(require("../domain/User.do"));
 const mongoose_1 = __importDefault(require("mongoose"));
 let UserRepoMongo = class UserRepoMongo {
     database;

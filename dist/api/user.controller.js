@@ -12,11 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const db_1 = __importDefault(require("src/db/db"));
-const UserRepoMongo_1 = __importDefault(require("src/repo/UserRepoMongo"));
-const Login_1 = __importDefault(require("src/use-cases/Login"));
-const Signup_1 = __importDefault(require("src/use-cases/Signup"));
-const UpdateUser_1 = __importDefault(require("src/use-cases/UpdateUser"));
+const db_1 = __importDefault(require("../db/db"));
+const UserRepoMongo_1 = __importDefault(require("../repo/UserRepoMongo"));
+const Login_1 = __importDefault(require("../use-cases/Login"));
+const Signup_1 = __importDefault(require("../use-cases/Signup"));
+const UpdateUser_1 = __importDefault(require("../use-cases/UpdateUser"));
 const typedi_1 = require("typedi");
 let UserController = class UserController {
     repo;
