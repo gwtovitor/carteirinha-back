@@ -40,7 +40,7 @@ let Database = class Database {
     }
     async connect() {
         const run = async () => {
-            await mongoose_1.default.connect("mongodb+srv://admin:FbnktXjNDDkJ7jiV@atlasdb.wx0smvj.mongodb.net/?appName=atlasdb");
+            await mongoose_1.default.connect(process.env.DB_URL);
         };
         run().catch((error) => console.error(error, 'Error na conexção', "mongodb+srv://admin:FbnktXjNDDkJ7jiV@atlasdb.wx0smvj.mongodb.net/?appName=atlasdb"));
     }
