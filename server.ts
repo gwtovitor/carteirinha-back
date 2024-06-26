@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
 import * as http from 'http';
-import appInstance from './app';
+import appInstance from './src/app';
 const app = appInstance.app;
 const port = normalizePort(process.env.PORT || '8081');
 app.set('port', port);
